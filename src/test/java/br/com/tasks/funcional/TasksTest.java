@@ -65,7 +65,6 @@ public class TasksTest {
 			driver.quit();
 		}
 	}
-//comentario
 	
 	@Test
 	public void deveSalvarTarefaComDataPassada() throws MalformedURLException, InterruptedException {
