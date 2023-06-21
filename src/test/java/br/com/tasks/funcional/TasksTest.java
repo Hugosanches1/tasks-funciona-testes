@@ -17,7 +17,7 @@ public class TasksTest {
 		System.setProperty("webdriver.chrome.driver", "C:\\Desenvolvimento\\Driver\\chromedriver.exe");
 		// WebDriver driver = new ChromeDriver();
 		DesiredCapabilities cap = DesiredCapabilities.chrome();
-		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.1.14:4444/wd/hub"), cap);
+		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.1.23:4444/wd/hub"), cap);
 		driver.navigate().to("http://192.168.1.14:8001/tasks");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return driver;
@@ -65,7 +65,7 @@ public class TasksTest {
 			driver.quit();
 		}
 	}
-	
+
 	@Test
 	public void deveSalvarTarefaComDataPassada() throws MalformedURLException, InterruptedException {
 		WebDriver driver = acessarAlicacao();
