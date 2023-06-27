@@ -15,6 +15,7 @@
 				<configuration>
 					<!--<parallel>all</parallel> -->
 					<useUnlimitedThreads>true</useUnlimitedThreads>
+					<skipTests>${skip.surefire.tests}</skipTests>
 				</configuration>
 			</plugin>
 			<plugin>
