@@ -87,14 +87,14 @@ public class TasksTest {
 		WebDriver driver = acessarAlicacao();
 		try {
 			driver.findElement(By.id("addTodo")).click();
-			driver.findElement(By.id("task")).sendKeys("descricao Automacao");
+			driver.findElement(By.id("task")).sendKeys("Para remover");
 			driver.findElement(By.id("dueDate")).sendKeys("10/10/2023");
 			driver.findElement(By.id("saveButton")).click();
 			String mensagem = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Success!", mensagem);
 
 			// remover tarefa
-			driver.findElement(By.xpath("//a[@class='btn btn-outline-danger btn-sm']")).click();
+			driver.findElement(By.xpath("//td[text()='Para remover']/../td[3]/a")).click();
 			mensagem = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Success!", mensagem);
 		} finally {
