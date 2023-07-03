@@ -14,9 +14,10 @@ public class TasksTest {
 	public WebDriver acessarAlicacao() throws MalformedURLException {
 		System.setProperty("webdriver.chrome.driver", "C:\\Desenvolvimento\\Driver\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
-		//DesiredCapabilities cap = DesiredCapabilities.chrome();
-		//WebDriver driver = new RemoteWebDriver(new URL("http://192.168.1.23:4444/wd/hub"), cap);
-		//driver.navigate().to("http://192.168.1.23:4444:8001/tasks");
+		// DesiredCapabilities cap = DesiredCapabilities.chrome();
+		// WebDriver driver = new RemoteWebDriver(new
+		// URL("http://192.168.1.23:4444/wd/hub"), cap);
+		// driver.navigate().to("http://192.168.1.23:4444:8001/tasks");
 		driver.navigate().to("http://192.168.1.23:8001/tasks/");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return driver;
@@ -76,6 +77,26 @@ public class TasksTest {
 			driver.findElement(By.id("saveButton")).click();
 			String mensagem = driver.findElement(By.id("message")).getText();
 			Assert.assertEquals("Due date must not be in past", mensagem);
+		} finally {
+			driver.quit();
+		}
+	}
+
+	@Test
+	public void deveRemoverTarefaComSucesso() throws MalformedURLException {
+		WebDriver driver = acessarAlicacao();
+		try {
+			driver.findElement(By.id("addTodo")).click();
+			driver.findElement(By.id("task")).sendKeys("descricao Automacao");
+			driver.findElement(By.id("dueDate")).sendKeys("10/10/2023");
+			driver.findElement(By.id("saveButton")).click();
+			String mensagem = driver.findElement(By.id("message")).getText();
+			Assert.assertEquals("Success!", mensagem);
+
+			// remover tarefa
+			driver.findElement(By.xpath("//a[@class='btn btn-outline-danger btn-sm']")).click();
+			mensagem = driver.findElement(By.id("message")).getText();
+			Assert.assertEquals("Success!", mensagem);
 		} finally {
 			driver.quit();
 		}
